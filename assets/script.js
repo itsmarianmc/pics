@@ -1,129 +1,101 @@
-document.addEventListener("DOMContentLoaded", () => {
-	const yearSelect = document.getElementById("filter-year");
-	const monthSelect = document.getElementById("filter-month");
+document.addEventListener("DOMContentLoaded", function() {
+	console.log("[BUILD INFO] Release Channel: stable, Build Number: #282, Update date: 06/18/2025");
 
-	const usedYears = new Set();
-	const usedMonths = new Set();
+	function generateStyles() {
+		const elements = document.querySelectorAll('*');
+		const styles = new Set();
 
-	const lazyImages = document.querySelectorAll('img.lazy-image');
+		elements.forEach(element => {
+			const classList = element.classList;
 
-	lazyImages.forEach(img => {
-		img.addEventListener('load', () => {
-			img.classList.add('loaded');
+			classList.forEach(cls => {
+				if (cls.startsWith('w') || cls.startsWith('h')) {
+					const parts = cls.substring(1).split('-');
+					const value = parts[0];
+					const decimal = parts[1] ? '.' + parts[1] : '';
+					const finalValue = value + decimal;
+					const property = cls.charAt(0) === 'w' ? 'width' : 'height';
+
+					if (!isNaN(finalValue)) {
+						styles.add(`.${cls} { ${property}: ${finalValue}px; }`);
+					}
+				}
+			});
 		});
 
-		if (img.complete) {
-			img.classList.add('loaded');
-		}
-  	});
+		return Array.from(styles).join('\n');
+	}
 
-	document.querySelectorAll('[data-js-action="expandInfo"]').forEach(button => {
-		button.addEventListener("click", () => {
-			const container = button.closest(".image-container");
-			const description = container.querySelector(".description");
+	const styles = generateStyles();
+	const styleTag = document.createElement('style');
+	styleTag.type = 'text/css';
+	styleTag.appendChild(document.createTextNode(styles));
+	document.head.appendChild(styleTag);
 
-			description.classList.toggle("show");
-			button.textContent = description.classList.contains("show")
-				? "Hide Information"
-				: "Show Information";
-		});
-	});
-
-	document.querySelectorAll(".image-container").forEach(container => {
-		const year = container.getAttribute("img-y");
-		const month = container.getAttribute("img-m");
-		const day = container.getAttribute("img-d");
-		const time = container.getAttribute("img-t");
-
-		if (year && month && day && time) {
-			const [hourStr, minuteStr] = time.split("-");
-			const hour = parseInt(hourStr);
-			const minute = parseInt(minuteStr);
-
-			const datePart = `${day}/${month}/${year}`;
-			const fullTime = `${hourStr.padStart(2, '0')}:${minuteStr.padStart(2, '0')}`;
-
-			const isPM = hour >= 12;
-			const hour12 = hour % 12 === 0 ? 12 : hour % 12;
-			const formatted12h = `${hour12}:${minuteStr.padStart(2, '0')} ${isPM ? "p.m." : "a.m."}`;
-
-			const fullString = `${datePart} ${fullTime} (${formatted12h})`;
-
-			const description = container.querySelector(".description");
-			const dateRow = description?.children[0];
-			const dateValue = dateRow?.querySelectorAll("a")[1];
-			if (dateValue) {
-				dateValue.textContent = fullString;
-			}
-		}
-	});
-
-	function filterImages() {
-		const selectedYear = yearSelect?.value;
-		const selectedMonth = monthSelect?.value;
-		const containers = document.querySelectorAll(".image-container");
-		const noResultsDiv = document.getElementById("no-results");
-
-		let anyVisible = false;
-
-		containers.forEach(container => {
-			const imgYear = container.getAttribute("img-y");
-			const imgMonth = container.getAttribute("img-m");
-
-			const matchYear = !selectedYear || imgYear === selectedYear;
-			const matchMonth = !selectedMonth || imgMonth === selectedMonth;
-
-			const show = matchYear && matchMonth;
-			container.style.display = show ? "block" : "none";
-
-			if (show) anyVisible = true;
-		});
-
-		if (noResultsDiv) {
-			noResultsDiv.style.display = anyVisible ? "none" : "block";
+	function getDeviceType() {
+		const userAgent = navigator.userAgent.toLowerCase();
+		if (/mobile|android|iphone|ipad|ipod|blackberry|windows phone/i.test(userAgent)) {
+			return "mobile";
+		} else {
+			return "desktop";
 		}
 	}
 
-	document.querySelectorAll(".image-container").forEach(container => {
-		usedYears.add(container.getAttribute("img-y"));
-		usedMonths.add(container.getAttribute("img-m"));
-	});
-
-	if (yearSelect) {
-		Array.from(yearSelect.options).forEach(option => {
-			if (option.value === "") return;
-			option.disabled = !usedYears.has(option.value);
-		});
+	function getBrowser() {
+		const userAgent = navigator.userAgent;
+		if (userAgent.indexOf("Firefox") > -1) {
+			return "mf_mozilla-firefox";
+		} else if (userAgent.indexOf("SamsungBrowser") > -1) {
+			return "si_samsung-internet";
+		} else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
+			return "op_opera";
+		} else if (userAgent.indexOf("Trident") > -1) {
+			return "ie_internet-Explorer";
+		} else if (userAgent.indexOf("Edge") > -1) {
+			return "me_microsoft-edge";
+		} else if (userAgent.indexOf("Chrome") > -1) {
+			return "gc_google-chrome";
+		} else if (userAgent.indexOf("Safari") > -1) {
+			return "as_apple-safari";
+		} else {
+			return "uk_unknown";
+		}
 	}
 
-	if (monthSelect) {
-		Array.from(monthSelect.options).forEach(option => {
-			if (option.value === "") return;
-			option.disabled = !usedMonths.has(option.value);
-		});
-	}
-
-	if (yearSelect && monthSelect) {
-		yearSelect.addEventListener("change", filterImages);
-		monthSelect.addEventListener("change", filterImages);
-	}
-});
-
-window.addEventListener("load", () => {
-	const lazyImages = document.querySelectorAll("img.lazy-image");
+	const deviceType = getDeviceType();
+	const browser = getBrowser();
 
 	setTimeout(() => {
-		lazyImages.forEach(img => {
-			const realSrc = img.getAttribute("data-src");
-			if (!realSrc) return;
+		console.log(`get-userdevice=${deviceType}`);
+		console.log(`get-userbrowser=${browser}`);
+		console.log(`placeholder-stylesheet-count=${styles.split('\n').length}`);
+	}, 10);
+	
+    const switcher = document.getElementById('scrollBarSwitcher');
+    const html = document.documentElement;
+    const body = document.body;
+    
+    const scrollState = localStorage.getItem('scrollbarState');
+    const isHidden = scrollState === null || scrollState === 'hidden';
+    
+    if (isHidden) {
+        html.classList.add('scrollbar-hidden');
+        body.classList.add('scrollbar-hidden');
+        switcher.textContent = 'Show ScrollBar';
+    } else {
+        html.classList.remove('scrollbar-hidden');
+        body.classList.remove('scrollbar-hidden');
+        switcher.textContent = 'Hide ScrollBar';
+    }
 
-			const highResImg = new Image();
-			highResImg.src = realSrc;
-
-			highResImg.onload = () => {
-			img.src = realSrc;
-			img.classList.add("loaded");
-			};
-		});
-	}, 2000);
+    switcher.addEventListener('click', () => {
+        const isNowHidden = !html.classList.contains('scrollbar-hidden');
+        
+        html.classList.toggle('scrollbar-hidden');
+        body.classList.toggle('scrollbar-hidden');
+        
+        switcher.textContent = isNowHidden ? 'Show ScrollBar' : 'Hide ScrollBar';
+        
+        localStorage.setItem('scrollbarState', isNowHidden ? 'hidden' : 'visible');
+    });
 });
