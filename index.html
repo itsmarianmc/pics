@@ -9,15 +9,16 @@
     <link rel="stylesheet" href="https://itsmarian-static.is-a.dev/fonts/font-awesome-6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://itsmarian-static.is-a.dev/global/variables.css">
     <link rel="stylesheet" href="https://itsmarian-static.is-a.dev/global/style.css">
+    <link rel="stylesheet" href="/assets/style.css">
     <!-- META -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="itsmarian">
-    <meta name="description" content="All pictures made by itsmarian.">
+    <meta name="description" content="All pictures shot and edited by itsmarian.">
     <meta name="keywords" content="itsmarian, itsmarianmc, itsmarian.mc">
     <meta name="referrer" content="no-referrer">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="itsmarian">
-    <meta property="og:description" content="All pictures made by itsmarian.">
+    <meta property="og:description" content="All pictures shot and edited by itsmarian.">
     <meta property="og:image" content="https://itsmarian.is-a.dev/assets/logos/favicon.png">
     <meta property="og:url" content="https://itsmarian.is-a.dev/pics">
     <meta property="og:type" content="website">
@@ -37,36 +38,48 @@
         <a style="font-size: 19px;">Just some random photos. Those photos were taken on an iPhone 15 Pro. All lens information can be seen under every photo.</a>
     </header>
     <main>
-        <div class="flex-container gap-0_5rem alignitems-center justifycontent-center margin-0auto" style="margin-bottom: 1rem; max-width: 400px;">
-            <div class="flex-container flex-column alignitems-center" style="width: 100%;">
-                <label for="filter-year">Year:</label>
-                <select id="filter-year">
-                    <option value="">All</option>
-                    <option value="2025">2025</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                </select>
-            </div>
-            <div class="flex-container flex-column alignitems-center" style="width: 100%;">
-                <label for="filter-month">Month:</label>
-                <select id="filter-month">
-                    <option value="">All</option>
-                    <option value="01">January</option>
-                    <option value="02">February</option>
-                    <option value="03">March</option>
-                    <option value="04">April</option>
-                    <option value="05">May</option>
-                    <option value="06">June</option>
-                    <option value="07">July</option>
-                    <option value="08">August</option>
-                    <option value="09">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>
+        <div class="flex-container gap-20px alignitems-center justifycontent-center margin-0auto" style="margin-bottom: 1rem; max-width: 400px;">
+            <div class="flex-container flex-column alignitems-center width-100p">
+                <label for="dropdown-year">Year:</label>
+                <div class="dropdown" data-value="" id="dropdown-year">
+                    <div class="dropdown__selected" tabindex="0">
+                    <span>All</span>
+                    <span class="dropdown__arrow">▾</span>
+                    </div>
+                    <div class="dropdown__list">
+                    <div class="dropdown__item" data-value="">All</div>
+                    <div class="dropdown__item" data-value="2025">2025</div>
+                    <div class="dropdown__item" data-value="2024">2024</div>
+                    <div class="dropdown__item" data-value="2023">2023</div>
+                    <div class="dropdown__item" data-value="2022">2022</div>
+                    <div class="dropdown__item" data-value="2021">2021</div>
+                    <div class="dropdown__item" data-value="2020">2020</div>
+                    </div>
+                </div>
+                </div>
+                <div class="flex-container flex-column alignitems-center width-100p">
+                <label for="dropdown-month">Month:</label>
+                <div class="dropdown" data-value="" id="dropdown-month">
+                    <div class="dropdown__selected" tabindex="0">
+                    <span>All</span>
+                    <span class="dropdown__arrow">▾</span>
+                    </div>
+                    <div class="dropdown__list">
+                    <div class="dropdown__item" data-value="">All</div>
+                    <div class="dropdown__item" data-value="01">January</div>
+                    <div class="dropdown__item" data-value="02">February</div>
+                    <div class="dropdown__item" data-value="03">March</div>
+                    <div class="dropdown__item" data-value="04">April</div>
+                    <div class="dropdown__item" data-value="05">May</div>
+                    <div class="dropdown__item" data-value="06">June</div>
+                    <div class="dropdown__item" data-value="07">July</div>
+                    <div class="dropdown__item" data-value="08">August</div>
+                    <div class="dropdown__item" data-value="09">September</div>
+                    <div class="dropdown__item" data-value="10">October</div>
+                    <div class="dropdown__item" data-value="11">November</div>
+                    <div class="dropdown__item" data-value="12">December</div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="flex-container flex-column gap-0_5rem">
@@ -358,5 +371,6 @@
     <div class="overlay" id="overlay"></div>
     <script src="https://itsmarian-static.is-a.dev/global/cookie-banner.js"></script>
     <script src="https://itsmarian-static.is-a.dev/global/basic.min.js"></script>
+    <script src="/assets/script.js"></script>
 </body>
 </html>
