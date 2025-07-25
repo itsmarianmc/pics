@@ -3,11 +3,9 @@ const fields = {
 	month: ''
 };
 
-// Sets für tatsächlich vorhandene Jahre/Monate
 let usedYears = new Set();
 let usedMonths = new Set();
 
-// Ermittelt, welche img-y / img-m vorkommen
 function collectUsedDateParts() {
 	usedYears = new Set();
 	usedMonths = new Set();
@@ -19,7 +17,6 @@ function collectUsedDateParts() {
 	});
 }
 
-// Initialisiert ein Custom-Dropdown, deaktiviert Items ohne Daten und ruft callback bei Auswahl auf
 function setupDropdown(dropdownId, fieldKey, callback) {
 	const dd = document.getElementById(dropdownId);
 	if (!dd) {
@@ -29,7 +26,6 @@ function setupDropdown(dropdownId, fieldKey, callback) {
 	const selected = dd.querySelector('.dropdown__selected');
 	const items = Array.from(dd.querySelectorAll('.dropdown__item'));
 
-	// Deaktivieren nicht-belegter Items
 	items.forEach(item => {
 		const val = item.dataset.value;
 		if (val !== '') {
@@ -42,7 +38,6 @@ function setupDropdown(dropdownId, fieldKey, callback) {
 		}
 	});
 
-	// Open/Close
 	selected.addEventListener('click', e => {
 		e.stopPropagation();
 		document.querySelectorAll('.dropdown').forEach(d => {
@@ -51,7 +46,6 @@ function setupDropdown(dropdownId, fieldKey, callback) {
 		dd.classList.toggle('open');
 	});
 
-	// Auswahl nur für nicht-disabled Items
 	items.forEach(item => {
 		if (item.classList.contains('disabled')) return;
 		item.addEventListener('click', e => {
@@ -66,14 +60,12 @@ function setupDropdown(dropdownId, fieldKey, callback) {
 			dd.classList.remove('open');
 			callback();
 		});
-		// aktiven State setzen, falls vorbelegt
 		if (item.dataset.value === fields[fieldKey]) {
 			item.classList.add('active');
 			selected.querySelector('span').textContent = item.textContent;
 		}
 	});
 
-	// Klick außerhalb schließt Dropdown
 	document.addEventListener('click', e => {
 		if (!dd.contains(e.target)) {
 			dd.classList.remove('open');
@@ -81,7 +73,6 @@ function setupDropdown(dropdownId, fieldKey, callback) {
 	});
 }
 
-// Filtert die Bilder nach fields.year und fields.month
 function filterImages() {
 	const containers = document.querySelectorAll('.image-container');
 	const noResultsDiv = document.getElementById('no-results');
@@ -103,67 +94,51 @@ function filterImages() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	// Sets aktualisieren
-	collectUsedDateParts();
+	setTimeout(() => {
+		collectUsedDateParts();
 
-	// Lazy-Load: CSS-Klasse nach Laden
-	const lazyImages = document.querySelectorAll('img.lazy-image');
-	lazyImages.forEach(img => {
-		img.addEventListener('load', () => img.classList.add('loaded'));
-		if (img.complete) img.classList.add('loaded');
-	});
-
-	// "Show Information"-Buttons
-	document.querySelectorAll('[data-js-action="expandInfo"]').forEach(btn => {
-		btn.addEventListener('click', () => {
-			const container = btn.closest('.image-container');
-			const description = container.querySelector('.description');
-			description.classList.toggle('show');
-			btn.textContent = description.classList.contains('show') ?
-				'Hide Information' :
-				'Show Information';
+		const lazyImages = document.querySelectorAll('img.lazy-image');
+		lazyImages.forEach(img => {
+			img.addEventListener('load', () => img.classList.add('loaded'));
+			if (img.complete) img.classList.add('loaded');
 		});
-	});
 
-	// Datum/Uhrzeit formatieren
-	document.querySelectorAll('.image-container').forEach(container => {
-		const y = container.getAttribute('img-y');
-		const m = container.getAttribute('img-m');
-		const d = container.getAttribute('img-d');
-		const t = container.getAttribute('img-t');
-		if (!y || !m || !d || !t) return;
+		document.querySelectorAll('[data-js-action="expandInfo"]').forEach(btn => {
+			btn.addEventListener('click', () => {
+				const container = btn.closest('.image-container');
+				const description = container.querySelector('.description');
+				description.classList.toggle('show');
+				btn.textContent = description.classList.contains('show') ?
+					'Hide Information' :
+					'Show Information';
+			});
+		});
 
-		const [hourStr, minuteStr] = t.split('-');
-		const hour = parseInt(hourStr, 10);
-		const isPM = hour >= 12;
-		const hour12 = hour % 12 === 0 ? 12 : hour % 12;
-		const datePart = `${d}/${m}/${y}`;
-		const fullTime24h = `${hourStr.padStart(2,'0')}:${minuteStr.padStart(2,'0')}`;
-		const formatted12 = `${hour12}:${minuteStr.padStart(2,'0')} ${isPM?'p.m.':'a.m.'}`;
-		const fullString = `${datePart} ${fullTime24h} (${formatted12})`;
+		document.querySelectorAll('.image-container').forEach(container => {
+			const y = container.getAttribute('img-y');
+			const m = container.getAttribute('img-m');
+			const d = container.getAttribute('img-d');
+			const t = container.getAttribute('img-t');
+			if (!y || !m || !d || !t) return;
 
-		const desc = container.querySelector('.description');
-		const dateRow = desc?.children[0];
-		const dateVal = dateRow?.querySelectorAll('a')[1];
-		if (dateVal) dateVal.textContent = fullString;
-	});
+			const [hourStr, minuteStr] = t.split('-');
+			const hour = parseInt(hourStr, 10);
+			const isPM = hour >= 12;
+			const hour12 = hour % 12 === 0 ? 12 : hour % 12;
+			const datePart = `${d}/${m}/${y}`;
+			const fullTime24h = `${hourStr.padStart(2,'0')}:${minuteStr.padStart(2,'0')}`;
+			const formatted12 = `${hour12}:${minuteStr.padStart(2,'0')} ${isPM?'p.m.':'a.m.'}`;
+			const fullString = `${datePart} ${fullTime24h} (${formatted12})`;
 
-	setupDropdown('dropdown-year', 'year', filterImages);
-	setupDropdown('dropdown-month', 'month', filterImages);
+			const desc = container.querySelector('.description');
+			const dateRow = desc?.children[0];
+			const dateVal = dateRow?.querySelectorAll('a')[1];
+			if (dateVal) dateVal.textContent = fullString;
+		});
 
-	filterImages();
-});
+		setupDropdown('dropdown-year', 'year', filterImages);
+		setupDropdown('dropdown-month', 'month', filterImages);
 
-window.addEventListener('load', () => {
-	const lazyImages = document.querySelectorAll('img.lazy-image');
-	lazyImages.forEach(img => {
-		const realSrc = img.getAttribute('data-src');
-		if (!realSrc) return;
-		const highRes = new Image();
-		highRes.src = realSrc;
-		highRes.onload = () => {
-			img.src = realSrc;
-			img.classList.add('loaded');
-		};
-	});
+		filterImages();
+	}, 1000);
 });

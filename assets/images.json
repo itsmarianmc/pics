@@ -1,0 +1,55 @@
+{
+	"images": [
+		{
+			"date": "2025-05-31 20:19",
+			"location": {
+				"name": "Rottau - Bayern - Germany",
+				"maps_url": "https://maps.app.goo.gl/vLFgneDjidZV5r6DA/"
+			},
+			"resolution": "4032 x 3024",
+			"shot_on": "Apple iPhone 15 Pro",
+			"size": "15.8 MB",
+			"lens": {
+				"focal_length": "13 mm ƒ2.2",
+				"iso": "ISO 40",
+				"shutter_speed": "1/1143s"
+			},
+			"description": "A wide shot captures a serene sunset over a rural landscape, featuring a traditional house in the distance, a gravel path leading to it, and a wooden picnic table with benches in the foreground, all framed by silhouetted trees and a clear sky with faint clouds.",
+			"image_url": "https://raw.githubusercontent.com/itsmarianmc/itsmarian/refs/heads/main/assets/is-a-dev/pics/20250531_2019.JPEG"
+		},
+		{
+			"date": "2025-05-31 11:57",
+			"location": {
+				"name": "Hochfelln - Bayern - Germany",
+				"maps_url": "https://maps.app.goo.gl/2FAoiyYYcSDdUQ8G9/"
+			},
+			"resolution": "8064 x 6048",
+			"shot_on": "Apple iPhone 15 Pro",
+			"size": "65.8 MB",
+			"lens": {
+				"focal_length": "24 mm ƒ1.78",
+				"iso": "100",
+				"shutter_speed": "1/9434s"
+			},
+			"description": "A high-angle, wide shot captures a vast mountainous landscape under a bright blue sky with scattered white clouds, showcasing rolling hills covered in lush green forests and meadows extending into the distant, hazy peaks.",
+			"image_url": "https://raw.githubusercontent.com/itsmarianmc/itsmarian/refs/heads/main/assets/is-a-dev/pics/20250531_1157.JPEG"
+		},
+		{
+			"date": "2025-05-30 14:23",
+			"location": {
+				"name": "Chiemsee - Bayern - Germany",
+				"maps_url": "https://maps.app.goo.gl/Pxv6qWH2fG8uPGJd6/"
+			},
+			"resolution": "8064 x 6048",
+			"shot_on": "Apple iPhone 15 Pro",
+			"size": "65.3 MB",
+			"lens": {
+				"focal_length": "24 mm ƒ1.78",
+				"iso": "100",
+				"shutter_speed": "1/15385s"
+			},
+			"description": "A wide, eye-level shot captures a serene lake with ripples in the foreground, leading to a tree-covered island dotted with houses in the middle ground, all under a blue sky filled with fluffy white clouds and distant mountains.",
+			"image_url": "https://raw.githubusercontent.com/itsmarianmc/itsmarian/refs/heads/main/assets/is-a-dev/pics/20250530_1423.JPEG"
+		}
+	]
+}
