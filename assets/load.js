@@ -123,10 +123,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const [datePart, timePart] = dateStr.split(' ');
         const [year, month, day] = datePart.split('-');
         
-        const lastDayOfMonth = new Date(year, month, 0).getDate();
-        const correctedDay = Math.min(day, lastDayOfMonth);
+        const dayInt = parseInt(day, 10);
+        const monthInt = parseInt(month, 10);
+        const lastDayOfMonth = new Date(year, monthInt, 0).getDate();
         
-        return new Date(`${year}-${month}-${correctedDay}T${timePart}:00`);
+        const correctedDay = Math.min(dayInt, lastDayOfMonth);
+        const correctedDayStr = String(correctedDay).padStart(2, '0');
+        
+        return new Date(`${year}-${month}-${correctedDayStr}T${timePart}:00`);
     }
 
     function formatDateForDisplay(dateObj) {

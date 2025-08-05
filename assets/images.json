@@ -1,6 +1,91 @@
 {
 	"images": [
 		{
+			"date": "2025-08-02 14:43",
+			"location": {
+				"name": "Tisens - Südtirol - Italy",
+				"maps_url": "https://maps.app.goo.gl/JgUHmXDKdH76RUX87"
+			},
+			"resolution": "5712 x 4284",
+			"shot_on": "Apple iPhone 15 Pro",
+			"size": "2.5 MB",
+			"lens": {
+				"focal_length": "24 mm ƒ1.78",
+				"iso": "ISO 80",
+				"shutter_speed": "1/9009s"
+			},
+			"description": "A wide view of a green mountain landscape under a cloudy sky, with a building and several trees in the middle ground and more mountain peaks in the distance, some of which are obscured by clouds.",
+			"image_url": "https://raw.githubusercontent.com/itsmarianmc/itsmarian/refs/heads/main/assets/is-a-dev/pics/20250802_1443.JPEG"
+		},
+		{
+			"date": "2025-08-02 14:35",
+			"location": {
+				"name": "Tisens - Südtirol - Italy",
+				"maps_url": "https://maps.app.goo.gl/JgUHmXDKdH76RUX87"
+			},
+			"resolution": "4032 x 3024",
+			"shot_on": "Apple iPhone 15 Pro",
+			"size": "883 KB",
+			"lens": {
+				"focal_length": "24 mm ƒ1.78",
+				"iso": "ISO 80",
+				"shutter_speed": "1/15385s"
+			},
+			"description": "A wide-angle shot of a dense coniferous forest under a gray, cloudy sky. Swirls of mist hang between the treetops, creating a mystical atmosphere.",
+			"image_url": "https://raw.githubusercontent.com/itsmarianmc/itsmarian/refs/heads/main/assets/is-a-dev/pics/20250802_1435.JPEG"
+		},
+		{
+			"date": "2025-08-01 17:19",
+			"location": {
+				"name": "Lana - Südtirol - Italy",
+				"maps_url": "https://maps.app.goo.gl/YLwqbdzjEJPKDtki6"
+			},
+			"resolution": "4032 x 2268",
+			"shot_on": "Apple iPhone 15 Pro",
+			"size": "2.1 MB",
+			"lens": {
+				"focal_length": "13 mm ƒ2.2",
+				"iso": "ISO 40",
+				"shutter_speed": "1/713s"
+			},
+			"description": "A wide shot of a double rainbow arching over a green field with buildings and trees. The background features a dark mountain range under a dramatic, cloudy sky.",
+			"image_url": "https://raw.githubusercontent.com/itsmarianmc/itsmarian/refs/heads/main/assets/is-a-dev/pics/20250801_1719.JPEG"
+		},
+		{
+			"date": "2025-07-30 13:10",
+			"location": {
+				"name": "Vöran - Südtirol - Italy",
+				"maps_url": "https://maps.app.goo.gl/bF9WJszjJsWvK7SU8"
+			},
+			"resolution": "4032 x 2268",
+			"shot_on": "Apple iPhone 15 Pro",
+			"size": "2.3 MB",
+			"lens": {
+				"focal_length": "77 mm ƒ2.8",
+				"iso": "ISO 25",
+				"shutter_speed": "1/978s"
+			},
+			"description": "A wide, eye-level shot captures a traditional farmhouse nestled in a lush green meadow, with a fence in the foreground and a dense forest on the right. In the background, majestic blue mountains rise under a partially cloudy sky.",
+			"image_url": "https://raw.githubusercontent.com/itsmarianmc/itsmarian/refs/heads/main/assets/is-a-dev/pics/20250730_1310.JPEG"
+		},
+		{
+			"date": "2025-07-29 12:24",
+			"location": {
+				"name": "Lana - Südtirol - Italy",
+				"maps_url": "https://maps.app.goo.gl/YLwqbdzjEJPKDtki6"
+			},
+			"resolution": "5712 x 4284",
+			"shot_on": "Apple iPhone 15 Pro",
+			"size": "1.6 MB",
+			"lens": {
+				"focal_length": "24 mm ƒ1.78",
+				"iso": "ISO 80",
+				"shutter_speed": "1/2833s"
+			},
+			"description": "A unique underwater perspective shows the rocky bottom of a clear stream, with sunlight dappling on the water's surface above.",
+			"image_url": "https://raw.githubusercontent.com/itsmarianmc/itsmarian/refs/heads/main/assets/is-a-dev/pics/20250729_1224.JPEG"
+		},
+		{
 			"date": "2025-05-31 20:19",
 			"location": {
 				"name": "Rottau - Bayern - Germany",
